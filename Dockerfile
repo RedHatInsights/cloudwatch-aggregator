@@ -7,4 +7,4 @@ RUN pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
 
 COPY . /usr/src/app/
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["./run-server.sh"]
