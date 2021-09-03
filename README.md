@@ -19,3 +19,8 @@ pipenv shell
 # build and run
 ./scripts/run
 ```
+
+### Linting
+```
+black app
+```

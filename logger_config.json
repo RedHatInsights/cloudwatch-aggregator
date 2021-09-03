@@ -1,0 +1,22 @@
+{
+  "prod": {
+    "request_timeout" : 2000,
+    "logger_url": "http://platform-logger.platform-logger.svc.cluster.local:9092/log/3scale"
+  },
+  "stage": {
+    "request_timeout" : 2000,
+    "logger_url": "http://platform-logger.3scale-stage.svc.cluster.local:9092/log/3scale-staging"
+  },
+  "qa": {
+    "request_timeout" : 2000,
+    "logger_url": "http://platform-logger.platform-logger.svc.cluster.local:9092/log/3scale-staging"
+  },
+  "ci": {
+    "request_timeout" : 2000,
+    "logger_url": "http://platform-logger.platform-logger.svc.cluster.local:9092/log/3scale-staging"
+  },
+  "dev": {
+    "request_timeout" : 2000,
+    "logger_url": "http://cloudwatch-aggregator.cloudwatch-aggregator.svc.cluster.local:8080/log/3scale-dev"
+  }
+}

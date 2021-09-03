@@ -4,8 +4,9 @@ import logging
 
 from app import app
 
-from flask import request, abort, jsonify, make_response
 from boto3.session import Session
+from flask import abort, current_app, jsonify, make_response, request
+from time import strftime
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", logging.INFO))
 
@@ -25,7 +26,7 @@ def log(log_stream):
     validate_log_stream(log_stream)
     logger = logging.getLogger(log_stream)
     add_handler(log_stream, logger)
-    logger.info(request.get_json())
+    logger.info(request.get_json(force=True))
     return {"status": "accepted"}, 202
 
 
@@ -57,3 +58,12 @@ def session():
         aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
         region_name=os.getenv("AWS_REGION_NAME"),
     )
+
+
+@app.after_request
+def after_request(response):
+    timestamp = strftime("[%Y-%b-%d %H:%M:%S]")
+    current_app.logger.info(
+        f"{timestamp} {request.remote_addr} {request.method} {request.full_path} {request.scheme} {response.status}"
+    )
+    return response
