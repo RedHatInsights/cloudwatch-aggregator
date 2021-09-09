@@ -90,7 +90,7 @@ objects:
             failureThreshold: 3
             httpGet:
               path: /ping
-              port: cloudwatch-aggregator
+              port: cwa
               scheme: HTTP
             initialDelaySeconds: 10
             periodSeconds: 10
@@ -99,13 +99,13 @@ objects:
           name: cloudwatch-aggregator
           ports:
           - containerPort: 8080
-            name: cloudwatch-aggregator
+            name: cwa
             protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
               path: /ping
-              port: cloudwatch-aggregator
+              port: cwa
               scheme: HTTP
             initialDelaySeconds: 15
             periodSeconds: 10
