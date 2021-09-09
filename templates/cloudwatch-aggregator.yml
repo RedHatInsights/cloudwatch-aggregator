@@ -98,7 +98,7 @@ objects:
             timeoutSeconds: 1
           name: cloudwatch-aggregator
           ports:
-          - containerPort: 8080
+          - containerPort: 5000
             name: cwa
             protocol: TCP
           readinessProbe:
