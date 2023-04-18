@@ -4,14 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
-python-dotenv = "*"
+flask = "==2.2.2"
+python-dotenv = "==0.21.0"
 watchtower = "==1.0.6"
-gunicorn = "*"
+gunicorn = "==20.1.0"
 
 [dev-packages]
-black = "*"
-pre-commit = "*"
+black = "==22.10.0"
+pre-commit = "==2.20.0"
 
 [requires]
 python_version = "3.9"
