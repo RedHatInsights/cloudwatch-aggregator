@@ -4,7 +4,7 @@ set -exv
 
 IMAGE="quay.io/cloudservices/cloudwatch-aggregator"
 IMAGE_TAG=$(git rev-parse --short=7 HEAD)
-SECURITY_COMPLIANCE_TAG="sc-$(date +%Y%m%)"
+SECURITY_COMPLIANCE_TAG="sc-$(date +%Y%m%d)"
 
 if [[ -z "$QUAY_USER" || -z "$QUAY_TOKEN" ]]; then
     echo "QUAY_USER and QUAY_TOKEN must be set"
