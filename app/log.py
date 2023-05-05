@@ -7,6 +7,22 @@ from app import app
 from boto3.session import Session
 from flask import abort, current_app, jsonify, make_response, request
 from time import strftime
+from app_common_python import LoadedConfig, isClowderEnabled
+
+
+ 
+if isClowderEnabled():
+    cfg = LoadedConfig
+
+    AWS_LOG_GROUP = cfg.logging.cloudwatch.logGroup
+    AWS_ACCESS_KEY_ID = cfg.logging.cloudwatch.accessKeyId
+    AWS_SECRET_ACCESS_KEY = cfg.logging.cloudwatch.secretAccessKey
+    AWS_REGION_NAME = cfg.logging.cloudwatch.region
+else:
+    AWS_LOG_GROUP = os.getenv("AWS_LOG_GROUP")
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_REGION_NAME = os.getenv("AWS_REGION_NAME")
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", logging.INFO))
 
@@ -45,7 +61,7 @@ def add_handler(log_stream, logger):
         Cache.active_stream_handlers[log_stream] = logger
         logger.addHandler(
             watchtower.CloudWatchLogHandler(
-                log_group=os.getenv("AWS_LOG_GROUP"),
+                log_group=AWS_LOG_GROUP,
                 stream_name=log_stream,
                 boto3_session=session(),
             )
@@ -54,9 +70,9 @@ def add_handler(log_stream, logger):
 
 def session():
     return Session(
-        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
-        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
-        region_name=os.getenv("AWS_REGION_NAME"),
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        region_name=AWS_REGION_NAME,
     )
 
 
