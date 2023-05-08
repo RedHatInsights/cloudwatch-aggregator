@@ -91,6 +91,28 @@ parameters:
   required: true
 - description: Port to listen on
   name: PUBLIC_PORT
-  value: 8000
+  value: 8000 
   required: true
 
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: cloudwatch-aggregator
+    name: cloudwatch-aggregator
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8000 
+    selector:
+      app: cloudwatch-aggregator
+      deploymentconfig: cloudwatch-aggregator
+    sessionAffinity: None
+    type: ClusterIP
+
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: cloudwatch-aggregator
