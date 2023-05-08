@@ -28,6 +28,9 @@ parameters:
   name: FLASK_ENV
   value: production
   required: true
+- description: Port number
+  name: PUBLIC_PORT
+  value: 5000
 objects:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
