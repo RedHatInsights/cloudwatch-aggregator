@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Template
 metadata:
@@ -9,8 +10,6 @@ objects:
     name: cloudwatch-aggregator
   spec:
     envName: ${ENV_NAME}
-    dependencies:
-    - gateway
     deployments:
     - name: service
       minReplicas: ${{MIN_REPLICAS}}
@@ -58,6 +57,28 @@ objects:
             cpu: ${CPU_REQUEST}
             memory: ${MEMORY_REQUEST}
 
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: cloudwatch-aggregator
+    name: cloudwatch-aggregator
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8000 
+    selector:
+      pod: cloudwatch-aggregator-service
+    sessionAffinity: None
+    type: ClusterIP
+
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+   name: cloudwatch-aggregator
+
 parameters:
 - name: CLOUD_WATCH_ALLOWED_STREAMS
   value: 3scale,3scale-dev,3scale-staging
@@ -86,31 +107,10 @@ parameters:
   required: true
 - description: Port to listen on
   name: PUBLIC_PORT
-  value: 8000 
+  value: "8000" 
   required: true
 - description: Environment
   name: ENV_NAME
   value: cloudwatch-aggregator
   required: true
 
-- apiVersion: v1
-  kind: Service
-  metadata:
-    labels:
-      app: cloudwatch-aggregator
-    name: cloudwatch-aggregator
-  spec:
-    ports:
-    - name: 8080-tcp
-      port: 8080
-      protocol: TCP
-      targetPort: 8000 
-    selector:
-      pod: cloudwatch-aggregator-service
-    sessionAffinity: None
-    type: ClusterIP
-
-- apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    name: cloudwatch-aggregator
