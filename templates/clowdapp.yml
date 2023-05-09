@@ -66,7 +66,7 @@ objects:
 parameters:
 - name: CLOUD_WATCH_ALLOWED_STREAMS
   value: 3scale,3scale-dev,3scale-staging
-- name: REPLICAS
+- name: MIN_REPLICAS
   value: "1"
 - name: IMAGE_TAG
   required: true
@@ -92,6 +92,10 @@ parameters:
 - description: Port to listen on
   name: PUBLIC_PORT
   value: 8000 
+  required: true
+- description: Environment
+  name: ENV_NAME
+  value: cloudwatch-aggregator
   required: true
 
 - apiVersion: v1
