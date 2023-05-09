@@ -7,8 +7,6 @@ objects:
   kind: ClowdApp
   metadata:
     name: cloudwatch-aggregator
-    labels:
-      app: cloudwatch-aggregator
   spec:
     envName: ${ENV_NAME}
     dependencies:
@@ -20,7 +18,10 @@ objects:
         public:
           enabled: true
       podSpec:
-        serviceAccountName: cloudwatch-aggregator
+        metadata:
+          annotations:
+            email: Cloud-Platform-Infra@redhat.com
+            owner: platform-infra
         env:
         - name: PUBLIC_PORT
           value: ${PUBLIC_PORT}
@@ -39,7 +40,6 @@ objects:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
-        name: cloudwatch-aggregator
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -106,7 +106,7 @@ parameters:
       protocol: TCP
       targetPort: 8000 
     selector:
-      app: cloudwatch-aggregator
+      pod: cloudwatch-aggregator-service
     sessionAffinity: None
     type: ClusterIP
 
