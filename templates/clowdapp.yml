@@ -33,7 +33,7 @@ objects:
           failureThreshold: 3
           httpGet:
             path: /ping
-            port: ${PUBLIC_PORT} 
+            port: ${{PUBLIC_PORT}}
             scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 10
@@ -43,7 +43,7 @@ objects:
           failureThreshold: 3
           httpGet:
             path: /ping
-            port: ${PUBLIC_PORT} 
+            port: ${{PUBLIC_PORT}} 
             scheme: HTTP
           initialDelaySeconds: 15
           periodSeconds: 10
@@ -113,4 +113,3 @@ parameters:
   name: ENV_NAME
   value: cloudwatch-aggregator
   required: true
-
