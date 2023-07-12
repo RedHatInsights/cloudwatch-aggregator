@@ -22,6 +22,6 @@ pipenv shell
 
 ### Linting/pre-commit
 Linting will run automatically with `black` in a pre-commit hook, but you'll need to run `pre-commit install` first.
-You can also run it manually with `pre-commit run -a'.
+You can also run it manually with `pre-commit run -a`.
 
 Additionally, the pre-commit will update the `requirements.txt` file if the `Pipfile.lock` has been updated. The `requirements.txt` file is needed for Synk to run its security scans.
