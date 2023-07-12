@@ -31,6 +31,7 @@ parameters:
 - description: Port number
   name: PUBLIC_PORT
   value: "5000"
+  required: true
 objects:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
