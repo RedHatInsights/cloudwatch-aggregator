@@ -31,6 +31,7 @@ parameters:
 - description: Port number
   name: PUBLIC_PORT
   value: "5000"
+  required: true
 objects:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
@@ -93,6 +94,8 @@ objects:
             value: ${CLOUD_WATCH_ALLOWED_STREAMS}
           - name: FLASK_ENV
             value: "${FLASK_ENV}"
+          - name: PUBLIC_PORT
+            value: ${PUBLIC_PORT}
           image: ${IMAGE}:${IMAGE_TAG}
           imagePullPolicy: IfNotPresent
           livenessProbe:
