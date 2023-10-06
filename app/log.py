@@ -2,15 +2,14 @@ import os
 import watchtower
 import logging
 
-from app import app
+from app import app, utils
 
 from boto3.session import Session
 from flask import abort, current_app, jsonify, make_response, request
+from splunk_handler import SplunkHandler
 from time import strftime
 from app_common_python import LoadedConfig, isClowderEnabled
 
-
- 
 if isClowderEnabled():
     cfg = LoadedConfig
 
@@ -23,6 +22,10 @@ else:
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
     AWS_REGION_NAME = os.getenv("AWS_REGION_NAME")
+
+
+LOG_TO_CLOUDWATCH = utils.truthy_string(os.getenv("LOG_TO_CLOUDWATCH"))
+LOG_TO_SPLUNK = utils.truthy_string(os.getenv("LOG_TO_SPLUNK"))
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", logging.INFO))
 
@@ -41,7 +44,7 @@ def ping():
 def log(log_stream):
     validate_log_stream(log_stream)
     logger = logging.getLogger(log_stream)
-    add_handler(log_stream, logger)
+    add_log_handlers(log_stream, logger)
     logger.info(request.get_json(force=True))
     return {"status": "accepted"}, 202
 
@@ -56,16 +59,37 @@ def validate_log_stream(log_stream):
         )
 
 
-def add_handler(log_stream, logger):
+def add_log_handlers(log_stream, logger):
     if not Cache.active_stream_handlers.get(log_stream):
         Cache.active_stream_handlers[log_stream] = logger
-        logger.addHandler(
-            watchtower.CloudWatchLogHandler(
-                log_group=AWS_LOG_GROUP,
-                stream_name=log_stream,
-                boto3_session=session(),
-            )
+        if LOG_TO_SPLUNK:
+            add_splunk_handler(logger)
+        if LOG_TO_CLOUDWATCH:
+            add_cw_handler(log_stream, logger)
+
+
+def add_splunk_handler(logger):
+    logger.addHandler(
+        SplunkHandler(
+            host=os.getenv("SPLUNK_HOST"),
+            port=os.getenv("SPLUNK_PORT"),
+            token=os.getenv("SPLUNK_TOKEN"),
+            index=os.getenv("SPLUNK_INDEX"),
+            force_keep_ahead=utils.truthy_string(os.getenv("SPLUNK_WAIT_ON_QUEUE")),
+            record_format=utils.truthy_string(os.getenv("SPLUNK_FORMAT_JSON")),
+            debug=utils.truthy_string(os.getenv("SPLUNK_DEBUG")),
         )
+    )
+
+
+def add_cw_handler(log_stream, logger):
+    logger.addHandler(
+        watchtower.CloudWatchLogHandler(
+            log_group=AWS_LOG_GROUP,
+            stream_name=log_stream,
+            boto3_session=session(),
+        )
+    )
 
 
 def session():
