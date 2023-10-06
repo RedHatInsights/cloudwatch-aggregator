@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: cloudwatch-aggregator
 objects:
-- apiVersion: cloud.redhat.com/v1alpha1 
+- apiVersion: cloud.redhat.com/v1alpha1
   kind: ClowdApp
   metadata:
     name: cloudwatch-aggregator
@@ -28,6 +28,12 @@ objects:
           value: ${CLOUD_WATCH_ALLOWED_STREAMS}
         - name: FLASK_ENV
           value: "${FLASK_ENV}"
+        - name: LOG_TO_SPLUNK
+          value: ${LOG_TO_SPLUNK}
+        - name: LOG_TO_CLOUDWATCH
+          value: ${LOG_TO_CLOUDWATCH}
+        - name: SPLUNK_DEBUG
+          value: ${SPLUNK_DEBUG}
         image: ${IMAGE}:${IMAGE_TAG}
         livenessProbe:
           failureThreshold: 3
@@ -43,7 +49,7 @@ objects:
           failureThreshold: 3
           httpGet:
             path: /ping
-            port: ${{PUBLIC_PORT}} 
+            port: ${{PUBLIC_PORT}}
             scheme: HTTP
           initialDelaySeconds: 15
           periodSeconds: 10
@@ -68,7 +74,7 @@ objects:
     - name: 8080-tcp
       port: 8080
       protocol: TCP
-      targetPort: 8000 
+      targetPort: 8000
     selector:
       pod: cloudwatch-aggregator-service
     sessionAffinity: None
@@ -107,9 +113,18 @@ parameters:
   required: true
 - description: Port to listen on
   name: PUBLIC_PORT
-  value: "8000" 
+  value: "8000"
   required: true
 - description: Environment
   name: ENV_NAME
   value: cloudwatch-aggregator
   required: true
+- description: Flag to enable logging to Splunk
+  name: LOG_TO_SPLUNK
+  value: false
+- description: Flag to enable logging to CloudWatch
+  name: LOG_TO_CLOUDWATCH
+  value: false
+- description: Flag to enable Splunk debug logs
+  name: SPLUNK_DEBUG
+  value: false
