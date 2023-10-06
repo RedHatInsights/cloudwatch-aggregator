@@ -75,8 +75,8 @@ def add_splunk_handler(logger):
             port=os.getenv("SPLUNK_PORT"),
             token=os.getenv("SPLUNK_TOKEN"),
             index=os.getenv("SPLUNK_INDEX"),
-            force_keep_ahead=True,
-            record_format=True,
+            force_keep_ahead=utils.truthy_string(os.getenv("SPLUNK_WAIT_ON_QUEUE")),
+            record_format=utils.truthy_string(os.getenv("SPLUNK_FORMAT_JSON")),
             debug=utils.truthy_string(os.getenv("SPLUNK_DEBUG")),
         )
     )

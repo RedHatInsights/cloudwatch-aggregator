@@ -32,8 +32,24 @@ objects:
           value: ${LOG_TO_SPLUNK}
         - name: LOG_TO_CLOUDWATCH
           value: ${LOG_TO_CLOUDWATCH}
+        - name: SPLUNK_HOST
+          value: ${SPLUNK_HOST}
+        - name: SPLUNK_PORT
+          value: ${SPLUNK_PORT}
+        - name: SPLUNK_INDEX
+          value: ${SPLUNK_INDEX}
+        - name: SPLUNK_WAIT_ON_QUEUE
+          value: ${SPLUNK_WAIT_ON_QUEUE}
+        - name: SPLUNK_FORMAT_JSON
+          value: ${SPLUNK_FORMAT_JSON}
         - name: SPLUNK_DEBUG
           value: ${SPLUNK_DEBUG}
+        - name: SPLUNK_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: token
+                name: splunk-token
+                optional: true
         image: ${IMAGE}:${IMAGE_TAG}
         livenessProbe:
           failureThreshold: 3
@@ -125,6 +141,19 @@ parameters:
 - description: Flag to enable logging to CloudWatch
   name: LOG_TO_CLOUDWATCH
   value: false
+- description: Splunk instance host
+  name: SPLUNK_HOST
+- description: Splunk host port
+  name: SPLUNK_PORT
+- description: Splunk log index
+  name: SPLUNK_INDEX
+  value: "main"
+- description: Flag to have Splunk wait when the queue is full (if false it will drop logs)
+  name: SPLUNK_WAIT_ON_QUEUE
+  value: true
+- description: Flag to format Splunk logs as JSON
+  name: SPLUNK_FORMAT_JSON
+  value: true
 - description: Flag to enable Splunk debug logs
   name: SPLUNK_DEBUG
   value: false
