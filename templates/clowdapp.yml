@@ -45,11 +45,11 @@ objects:
         - name: SPLUNK_DEBUG
           value: ${SPLUNK_DEBUG}
         - name: SPLUNK_TOKEN
-            valueFrom:
-              secretKeyRef:
-                key: token
-                name: splunk
-                optional: true
+          valueFrom:
+            secretKeyRef:
+              key: token
+              name: splunk
+              optional: true
         image: ${IMAGE}:${IMAGE_TAG}
         livenessProbe:
           failureThreshold: 3

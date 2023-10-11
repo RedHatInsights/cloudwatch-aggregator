@@ -109,11 +109,11 @@ objects:
           - name: SPLUNK_DEBUG
             value: ${SPLUNK_DEBUG}
           - name: SPLUNK_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  key: token
-                  name: splunk
-                  optional: true
+            valueFrom:
+              secretKeyRef:
+                key: token
+                name: splunk
+                optional: true
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
