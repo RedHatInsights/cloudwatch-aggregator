@@ -34,10 +34,10 @@ parameters:
   required: true
 - description: Flag to enable logging to Splunk
   name: LOG_TO_SPLUNK
-  value: false
+  value: "false"
 - description: Flag to enable logging to CloudWatch
   name: LOG_TO_CLOUDWATCH
-  value: false
+  value: "false"
 - description: Splunk instance host
   name: SPLUNK_HOST
 - description: Splunk host port
@@ -47,13 +47,13 @@ parameters:
   value: "main"
 - description: Flag to have Splunk wait when the queue is full (if false it will drop logs)
   name: SPLUNK_WAIT_ON_QUEUE
-  value: true
+  value: "true"
 - description: Flag to format Splunk logs as JSON
   name: SPLUNK_FORMAT_JSON
-  value: true
+  value: "true"
 - description: Flag to enable Splunk debug logs
   name: SPLUNK_DEBUG
-  value: false
+  value: "false"
 objects:
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
