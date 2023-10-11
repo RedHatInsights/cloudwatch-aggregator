@@ -48,7 +48,7 @@ objects:
             valueFrom:
               secretKeyRef:
                 key: token
-                name: splunk-token
+                name: splunk
                 optional: true
         image: ${IMAGE}:${IMAGE_TAG}
         livenessProbe:
