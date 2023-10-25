@@ -71,6 +71,15 @@ objects:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
+        volumes:
+        - name: trusted-certs-volume
+          configMap:
+            optional: true
+            name: trusted-certs
+        volumeMounts:
+        - name: trusted-certs-volume
+          mountPath: /etc/ssl/certs/${TRUSTED_CERT_FILENAME}
+          subPath: ${TRUSTED_CERT_FILENAME}
         resources:
           limits:
             cpu: ${CPU_LIMIT}
@@ -157,3 +166,6 @@ parameters:
 - description: Flag to enable Splunk debug logs
   name: SPLUNK_DEBUG
   value: "false"
+- description: Sub path / filename to mount the trusted cert configMap
+  name: TRUSTED_CERT_FILENAME
+  value: "placeholder.pem"
