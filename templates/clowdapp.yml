@@ -44,6 +44,8 @@ objects:
           value: ${SPLUNK_FORMAT_JSON}
         - name: SPLUNK_DEBUG
           value: ${SPLUNK_DEBUG}
+        - name: REQUESTS_CA_BUNDLE
+          value: ${REQUESTS_CA_BUNDLE}
         - name: SPLUNK_TOKEN
           valueFrom:
             secretKeyRef:
@@ -169,3 +171,5 @@ parameters:
 - description: Sub path / filename to mount the trusted cert configMap
   name: TRUSTED_CERT_FILENAME
   value: "placeholder.pem"
+- description: Explicitly set the CA path for Python to use
+  name: REQUESTS_CA_BUNDLE
