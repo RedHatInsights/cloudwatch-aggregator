@@ -172,7 +172,6 @@ parameters:
   value: "false"
 - description: Source type for logs to Splunk
   name: SPLUNK_SOURCE_TYPE
-  value: "json"
 - description: Sub path / filename to mount the trusted cert configMap
   name: TRUSTED_CERT_FILENAME
   value: "placeholder.pem"

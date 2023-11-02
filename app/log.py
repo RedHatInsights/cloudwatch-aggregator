@@ -78,7 +78,7 @@ def add_splunk_handler(logger):
             force_keep_ahead=app.log.utils.truthy_string(os.getenv("SPLUNK_WAIT_ON_QUEUE")),
             record_format=app.log.utils.truthy_string(os.getenv("SPLUNK_FORMAT_JSON")),
             debug=app.log.utils.truthy_string(os.getenv("SPLUNK_DEBUG")),
-            sourcetype=os.getenv("SPLUNK_SOURCE_TYPE", "json"),
+            sourcetype=os.getenv("SPLUNK_SOURCE_TYPE"),
         )
     )
 
