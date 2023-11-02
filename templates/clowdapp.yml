@@ -44,6 +44,8 @@ objects:
           value: ${SPLUNK_FORMAT_JSON}
         - name: SPLUNK_DEBUG
           value: ${SPLUNK_DEBUG}
+        - name: SPLUNK_SOURCE_TYPE
+          value: ${SPLUNK_SOURCE_TYPE}
         - name: REQUESTS_CA_BUNDLE
           value: ${REQUESTS_CA_BUNDLE}
         - name: SPLUNK_TOKEN
@@ -168,6 +170,9 @@ parameters:
 - description: Flag to enable Splunk debug logs
   name: SPLUNK_DEBUG
   value: "false"
+- description: Source type for logs to Splunk
+  name: SPLUNK_SOURCE_TYPE
+  value: "json"
 - description: Sub path / filename to mount the trusted cert configMap
   name: TRUSTED_CERT_FILENAME
   value: "placeholder.pem"
