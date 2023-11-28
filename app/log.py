@@ -45,7 +45,7 @@ def log(log_stream):
     validate_log_stream(log_stream)
     logger = logging.getLogger(log_stream)
     add_log_handlers(log_stream, logger)
-    logger.info(request.get_json(force=True))
+    logger.info(request.get_data(as_text=True))
     return {"status": "accepted"}, 202
 
 
