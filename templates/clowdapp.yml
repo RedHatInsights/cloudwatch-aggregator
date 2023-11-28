@@ -166,7 +166,7 @@ parameters:
   value: "true"
 - description: Flag to format Splunk logs as JSON
   name: SPLUNK_FORMAT_JSON
-  value: "true"
+  value: "false"
 - description: Flag to enable Splunk debug logs
   name: SPLUNK_DEBUG
   value: "false"
