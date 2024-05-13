@@ -12,8 +12,7 @@ app-common-python = "==0.2.5"
 splunk-handler = "*"
 
 [dev-packages]
-black = "==22.10.0"
-pre-commit = "==2.20.0"
+pre-commit = "==3.6.2"
 
 [requires]
 python_version = "3.9"
