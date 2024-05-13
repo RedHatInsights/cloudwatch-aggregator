@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "==3.0.0"
+flask = "==3.0.3"
 python-dotenv = "==0.21.0"
 watchtower = "==1.0.6"
 gunicorn = "==22.0.0"
