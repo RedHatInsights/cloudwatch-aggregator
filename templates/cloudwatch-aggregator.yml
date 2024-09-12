@@ -59,10 +59,10 @@ objects:
   kind: Deployment
   metadata:
     annotations:
-      email: Cloud-Platform-Infra@redhat.com
+      email: platform-accessmanagement@redhat.com
     labels:
       app: cloudwatch-aggregator
-      owner: platform-infra
+      owner: platform-accessmanagement
     name: cloudwatch-aggregator
   spec:
     replicas: ${{REPLICAS}}
