@@ -56,7 +56,7 @@ parameters:
   value: "false"
 objects:
 - apiVersion: apps.openshift.io/v1
-  kind: DeploymentConfig
+  kind: Deployment
   metadata:
     annotations:
       email: Cloud-Platform-Infra@redhat.com
