@@ -8,7 +8,7 @@ flask = "==3.0.3"
 python-dotenv = "==1.0.1"
 watchtower = "==1.0.6"
 gunicorn = "==23.0.0"
-app-common-python = "==0.2.5"
+app-common-python = "==0.2.7"
 splunk-handler = "*"
 urllib3 = "==1.26.19"
 
