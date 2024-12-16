@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# ... except for
+!app/
+!Pipfile
+!Pipfile.lock
+!run-server.sh
