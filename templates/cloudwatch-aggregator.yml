@@ -178,8 +178,6 @@ objects:
         restartPolicy: Always
         schedulerName: default-scheduler
         terminationGracePeriodSeconds: 30
-        imagePullSecrets:
-        - name: quay-cloudservices-pull
     triggers:
     - type: ConfigChange
 - apiVersion: v1
