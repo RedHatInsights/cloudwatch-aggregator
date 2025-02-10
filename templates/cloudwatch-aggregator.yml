@@ -106,8 +106,8 @@ objects:
           - name: SPLUNK_TOKEN
             valueFrom:
               secretKeyRef:
-                key: token
-                name: splunk
+                key: splunk-token
+                name: splunk-token
                 optional: true
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
