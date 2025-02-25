@@ -5,6 +5,8 @@ COPY Pipfile* /usr/src/app/
 
 RUN microdnf install --disableplugin=subscription-manager --nodocs -y python39 tar gzip
 
+RUN microdnf install --disableplugin=subscription-manager --nodocs -y python39 tar gzip pip
+
 RUN pip3 install --upgrade pip
 RUN pip3 install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
