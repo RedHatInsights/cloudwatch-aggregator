@@ -105,8 +105,6 @@ objects:
             value: ${SPLUNK_FORMAT_JSON}
           - name: SPLUNK_DEBUG
             value: ${SPLUNK_DEBUG}
-          - name: SPLUNK_FORMAT_JSON
-            value: ${SPLUNK_FORMAT_JSON}
           - name: SPLUNK_SOURCE_TYPE
             value: ${SPLUNK_SOURCE_TYPE}
           - name: SPLUNK_TOKEN
