@@ -50,7 +50,9 @@ parameters:
   value: "true"
 - description: Flag to format Splunk logs as JSON
   name: SPLUNK_FORMAT_JSON
-  value: "true"
+  value: "false"
+- description: Source type for logs to splunk
+  name: SPLUNK_SOURCE_TYPE
 - description: Flag to enable Splunk debug logs
   name: SPLUNK_DEBUG
   value: "false"
@@ -103,6 +105,8 @@ objects:
             value: ${SPLUNK_FORMAT_JSON}
           - name: SPLUNK_DEBUG
             value: ${SPLUNK_DEBUG}
+          - name: SPLUNK_SOURCE_TYPE
+            value: ${SPLUNK_SOURCE_TYPE}
           - name: SPLUNK_TOKEN
             valueFrom:
               secretKeyRef:
