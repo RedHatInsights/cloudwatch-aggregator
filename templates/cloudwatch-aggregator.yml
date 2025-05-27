@@ -150,7 +150,7 @@ objects:
             initialDelaySeconds: 10
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 1
+            timeoutSeconds: 2
           name: cloudwatch-aggregator
           ports:
           - containerPort: 5000
@@ -165,7 +165,7 @@ objects:
             initialDelaySeconds: 15
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 1
+            timeoutSeconds: 2
           resources:
             limits:
               cpu: ${CPU_LIMIT}
