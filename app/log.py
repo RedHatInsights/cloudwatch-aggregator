@@ -86,8 +86,8 @@ def add_splunk_handler(logger):
 def add_cw_handler(log_stream, logger):
     logger.addHandler(
         watchtower.CloudWatchLogHandler(
-            log_group=AWS_LOG_GROUP,
-            stream_name=log_stream,
+            log_group_name=AWS_LOG_GROUP,
+            log_stream_name=log_stream,
             boto3_session=session(),
         )
     )
