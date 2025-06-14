@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 flask = "==3.1.1"
 python-dotenv = "==1.1.0"
-watchtower = "==2.0.0"
+watchtower = "==2.1.1"
 gunicorn = "==23.0.0"
 app-common-python = "==0.2.7"
 splunk-handler = "*"
