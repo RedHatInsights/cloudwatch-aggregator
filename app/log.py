@@ -84,11 +84,12 @@ def add_splunk_handler(logger):
 
 
 def add_cw_handler(log_stream, logger):
+    boto_client = session().client("logs")
     logger.addHandler(
         watchtower.CloudWatchLogHandler(
             log_group_name=AWS_LOG_GROUP,
             log_stream_name=log_stream,
-            boto3_session=session(),
+            boto3_client=boto_client,
         )
     )
 
