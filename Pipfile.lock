@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6e48cea6688459975ff5594065938ff7f0eba3cd348b61d981e7ea08e90ff73c"
+            "sha256": "bb943e0f0b3a7fa11f467d5920d00d48cb8539ce60296c10ccc5bf20e9124701"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -34,19 +34,19 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:3f2375b7576de603085d7b7491cf2c4ab5c57d12965a5ce295821cdd4d10e950",
-                "sha256:7685085b8ea679dd858330834c16364c61c5830edb892c5864fb12ed68798708"
+                "sha256:4b7fbd2b469d5fa6325f0e90310b2d430c9a35e8a984a9919103e6d248422537",
+                "sha256:667bc3a9bd1f26579957d95a2612359103c343dd74d44f202d09a155ed4189c6"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==1.40.6"
+            "version": "==1.40.16"
         },
         "botocore": {
             "hashes": [
-                "sha256:b253f107617791a29ca81c6f0fca20ac1afdba01869eb43017022bbbb8387f34",
-                "sha256:e132eac967a7526596e31ca571d7f1ef9676c6a9c4f1322446768994ccab64aa"
+                "sha256:0296a245cb349431279d825522ae70270edf8d8be7b91108fdcc086ea347c0b6",
+                "sha256:522a8b7e3837667aca978b5b2dd2d12c3834f58f13df3c8d3369070d883d608d"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==1.40.6"
+            "version": "==1.40.16"
         },
         "certifi": {
             "hashes": [
@@ -151,12 +151,12 @@
         },
         "flask": {
             "hashes": [
-                "sha256:07aae2bb5eaf77993ef57e357491839f5fd9f4dc281593a81a9e4d79a24f295c",
-                "sha256:284c7b8f2f58cb737f0cf1c30fd7eaf0ccfcde196099d24ecede3fc2005aa59e"
+                "sha256:bf656c15c80190ed628ad08cdfd3aaa35beb087855e2f494910aa3774cc4fd87",
+                "sha256:ca1d8112ec8a6158cc29ea4858963350011b5c846a414cdb7a954aa9e967d03c"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==3.1.1"
+            "version": "==3.1.2"
         },
         "gunicorn": {
             "hashes": [
@@ -293,11 +293,11 @@
         },
         "requests": {
             "hashes": [
-                "sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c",
-                "sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422"
+                "sha256:2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6",
+                "sha256:dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
             ],
-            "markers": "python_version >= '3.8'",
-            "version": "==2.32.4"
+            "markers": "python_version >= '3.9'",
+            "version": "==2.32.5"
         },
         "s3transfer": {
             "hashes": [
@@ -368,11 +368,11 @@
         },
         "filelock": {
             "hashes": [
-                "sha256:adbc88eabb99d2fec8c9c1b229b171f18afa655400173ddc653d5d01501fb9f2",
-                "sha256:c401f4f8377c4464e6db25fff06205fd89bdd83b65eb0488ed1b160f780e21de"
+                "sha256:66eda1888b0171c998b35be2bcc0f6d75c388a7ce20c3f3f37aa8e96c2dddf58",
+                "sha256:d38e30481def20772f5baf097c122c3babc4fcdb7e14e57049eb9d88c6dc017d"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==3.18.0"
+            "version": "==3.19.1"
         },
         "identify": {
             "hashes": [
@@ -468,11 +468,11 @@
         },
         "virtualenv": {
             "hashes": [
-                "sha256:07c19bc66c11acab6a5958b815cbcee30891cd1c2ccf53785a28651a0d8d8a67",
-                "sha256:1b44478d9e261b3fb8baa5e74a0ca3bc0e05f21aa36167bf9cbf850e542765b8"
+                "sha256:341f5afa7eee943e4984a9207c025feedd768baff6753cd660c857ceb3e36026",
+                "sha256:44815b2c9dee7ed86e387b842a84f20b93f7f417f95886ca1996a72a4138eb1a"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==20.33.1"
+            "version": "==20.34.0"
         }
     }
 }
