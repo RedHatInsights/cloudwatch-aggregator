@@ -93,6 +93,27 @@ objects:
         serviceAccountName: cloudwatch-aggregator
         securityContext:
           runAsNonRoot: true
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - cloudwatch-aggregator
+                topologyKey: topology.kubernetes.io/zone
+              weight: 100
+            - podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - cloudwatch-aggregator
+                topologyKey: kubernetes.io/hostname
+              weight: 99
         containers:
         - env:
           - name: LOG_TO_SPLUNK
