@@ -10,7 +10,7 @@ watchtower = "==3.4.0"
 gunicorn = "==23.0.0"
 app-common-python = "==0.2.9"
 splunk-handler = "*"
-urllib3 = "==2.5.0"
+urllib3 = "==2.6.0"
 
 [dev-packages]
 pre-commit = "==4.5.0"
