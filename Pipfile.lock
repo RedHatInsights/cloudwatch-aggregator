@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a6b7c47e2f64292a88139a270d943ec3308f433d5bd7be4468b19850dba556d8"
+            "sha256": "6f130a752ef27d7f69e69b2afc36baa4bb7a31a1af31fc984d176fedf62df0ec"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -34,27 +34,27 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:2537d9462b70f4432385202709d1c8aa2291f802cfd8588d33334112116c554a",
-                "sha256:54939f7fc1b2777771c2a66ecc77025b2af86e567b5cf68d30dc3838205f0a4a"
+                "sha256:2ed797bdb394b08550f6269babf0a31bbeb853684bb2cb67116620df0ed632dc",
+                "sha256:f681a8d43b46b3d8acf0be4f3894eb85e40e75945431d0dfe0542edda7025512"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==1.42.11"
+            "version": "==1.42.23"
         },
         "botocore": {
             "hashes": [
-                "sha256:4c5278b9e0f6217f428aade811d409e321782bd14f0a202ff95a298d841be1f7",
-                "sha256:73b0796870f16ccd44729c767ade20e8ed62b31b3aa2be07b35377338dcf6d7c"
+                "sha256:453ce449bd1021acd67e75c814aae1b132b1ab3ee0ecff248de863bf19e58be8",
+                "sha256:d5042e0252b81f25ca1152fff9ed25463bab2438fbc4530ba53d5390d00ca1b1"
             ],
             "markers": "python_version >= '3.9'",
-            "version": "==1.42.11"
+            "version": "==1.42.23"
         },
         "certifi": {
             "hashes": [
-                "sha256:97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b",
-                "sha256:d8ab5478f2ecd78af242878415affce761ca6bc54a22a27e026d7c25357c3316"
+                "sha256:9943707519e4add1115f44c2bc244f782c0249876bf51b6599fee1ffbedd685c",
+                "sha256:ac726dd470482006e014ad384921ed6438c457018f4b3d204aea4281258b2120"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2025.11.12"
+            "version": "==2026.1.4"
         },
         "charset-normalizer": {
             "hashes": [
@@ -387,12 +387,12 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:016f9c98bb7e98085cb2b4b17b87d2c702975664e4f060c6532e64d1c1a5e797",
-                "sha256:ec21cddfe7724fc7cb4ba4bea7aa8e2ef36f607a4bab81aa6ce42a13dc3f03dd"
+                "sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed",
+                "sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==2.6.2"
+            "version": "==2.6.3"
         },
         "watchtower": {
             "hashes": [
@@ -430,12 +430,11 @@
         },
         "filelock": {
             "hashes": [
-                "sha256:15d9e9a67306188a44baa72f569d2bfd803076269365fdea0934385da4dc361a",
-                "sha256:b8360948b351b80f420878d8516519a2204b07aefcdcfd24912a5d33127f188c"
+                "sha256:a2241ff4ddde2a7cebddf78e39832509cb045d18ec1a09d7248d6bfc6bfbbe64",
+                "sha256:fbba7237d6ea277175a32c54bb71ef814a8546d8601269e1bfc388de333974e8"
             ],
-            "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==3.20.1"
+            "version": "==3.20.2"
         },
         "identify": {
             "hashes": [
@@ -447,11 +446,11 @@
         },
         "nodeenv": {
             "hashes": [
-                "sha256:6ec12890a2dab7946721edbfbcd91f3319c6ccc9aec47be7c7e6b7011ee6645f",
-                "sha256:ba11c9782d29c27c70ffbdda2d7415098754709be8a7056d79a737cd901155c9"
+                "sha256:5bb13e3eed2923615535339b3c620e76779af4cb4c6a90deccc9e36b274d3827",
+                "sha256:996c191ad80897d076bdfba80a41994c2b47c68e224c542b48feba42ba00f8bb"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6'",
-            "version": "==1.9.1"
+            "version": "==1.10.0"
         },
         "platformdirs": {
             "hashes": [
