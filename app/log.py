@@ -81,6 +81,8 @@ def add_splunk_handler(logger):
             debug=utils.truthy_string(os.getenv("SPLUNK_DEBUG")),
             sourcetype=os.getenv("SPLUNK_SOURCE_TYPE"),
             timeout=5,
+            flush_interval=float(os.getenv("SPLUNK_FLUSH_INTERVAL", 10)),
+            queue_size=int(os.getenv("SPLUNK_QUEUE_SIZE", 100)),
         )
     )
 
@@ -93,6 +95,8 @@ def add_cw_handler(log_stream, logger):
             log_group_name=AWS_LOG_GROUP,
             log_stream_name=log_stream,
             boto3_client=boto_client,
+            send_interval=int(os.getenv("CW_SEND_INTERVAL", 10)),
+            max_batch_count=int(os.getenv("CW_MAX_BATCH_COUNT", 100)),
         )
     )
 
