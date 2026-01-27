@@ -5,6 +5,7 @@ import logging
 from app import app, utils
 
 from boto3.session import Session
+from botocore.config import Config
 from flask import abort, current_app, jsonify, make_response, request
 from splunk_handler import SplunkHandler
 from time import strftime
@@ -79,12 +80,14 @@ def add_splunk_handler(logger):
             record_format=utils.truthy_string(os.getenv("SPLUNK_FORMAT_JSON")),
             debug=utils.truthy_string(os.getenv("SPLUNK_DEBUG")),
             sourcetype=os.getenv("SPLUNK_SOURCE_TYPE"),
+            timeout=5,
         )
     )
 
 
 def add_cw_handler(log_stream, logger):
-    boto_client = session().client("logs")
+    boto_config = Config(connect_timeout=5, read_timeout=10)
+    boto_client = session().client("logs", config=boto_config)
     logger.addHandler(
         watchtower.CloudWatchLogHandler(
             log_group_name=AWS_LOG_GROUP,
