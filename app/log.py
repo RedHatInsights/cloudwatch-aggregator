@@ -86,7 +86,7 @@ def add_splunk_handler(logger):
 
 
 def add_cw_handler(log_stream, logger):
-    boto_config = Config(connect_timeout=5, read_timeout=10)
+    boto_config = Config(connect_timeout=5, read_timeout=10, retries={"max_attempts": 3, "mode": "standard"})
     boto_client = session().client("logs", config=boto_config)
     logger.addHandler(
         watchtower.CloudWatchLogHandler(
