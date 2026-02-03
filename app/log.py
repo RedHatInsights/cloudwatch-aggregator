@@ -1,4 +1,5 @@
 import os
+import threading
 import watchtower
 import logging
 
@@ -30,8 +31,19 @@ LOG_TO_SPLUNK = utils.truthy_string(os.getenv("LOG_TO_SPLUNK"))
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", logging.INFO))
 
+# Create boto3 client once at module level for reuse across all handlers
+if LOG_TO_CLOUDWATCH:
+    boto_session = Session(
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        region_name=AWS_REGION_NAME,
+    )
+    boto_config = Config(connect_timeout=5, read_timeout=5, retries={"max_attempts": 0})
+    boto_client = boto_session.client("logs", config=boto_config)
+
 
 class Cache:
+    lock = threading.Lock()
     active_stream_handlers = {}
     allowed_streams = os.getenv("CLOUD_WATCH_ALLOWED_STREAMS", "").split(",")
 
@@ -61,12 +73,13 @@ def validate_log_stream(log_stream):
 
 
 def add_log_handlers(log_stream, logger):
-    if not Cache.active_stream_handlers.get(log_stream):
-        Cache.active_stream_handlers[log_stream] = logger
-        if LOG_TO_SPLUNK:
-            add_splunk_handler(logger)
-        if LOG_TO_CLOUDWATCH:
-            add_cw_handler(log_stream, logger)
+    with Cache.lock:
+        if not Cache.active_stream_handlers.get(log_stream):
+            Cache.active_stream_handlers[log_stream] = logger
+            if LOG_TO_SPLUNK:
+                add_splunk_handler(logger)
+            if LOG_TO_CLOUDWATCH:
+                add_cw_handler(log_stream, logger)
 
 
 def add_splunk_handler(logger):
@@ -88,8 +101,6 @@ def add_splunk_handler(logger):
 
 
 def add_cw_handler(log_stream, logger):
-    boto_config = Config(connect_timeout=5, read_timeout=5, retries={"max_attempts": 0})
-    boto_client = session().client("logs", config=boto_config)
     logger.addHandler(
         watchtower.CloudWatchLogHandler(
             log_group_name=AWS_LOG_GROUP,
@@ -98,14 +109,6 @@ def add_cw_handler(log_stream, logger):
             send_interval=int(os.getenv("CW_SEND_INTERVAL", 10)),
             max_batch_count=int(os.getenv("CW_MAX_BATCH_COUNT", 100)),
         )
-    )
-
-
-def session():
-    return Session(
-        aws_access_key_id=AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-        region_name=AWS_REGION_NAME,
     )
 
 
