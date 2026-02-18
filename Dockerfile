@@ -1,11 +1,5 @@
 FROM registry.access.redhat.com/ubi9/ubi-minimal:9.7-1771346502
 
-# Update vulnerable packages to address security vulnerabilities:
-# - curl-minimal/libcurl-minimal: CVE-2025-9086 (Medium)
-# - openssl-libs: CVE-2025-15467 (High), CVE-2025-69419, CVE-2025-11187 (Medium)
-RUN microdnf update -y curl-minimal libcurl-minimal openssl-libs && \
-    microdnf clean all
-
 LABEL name="cloudwatch-aggregator" \
       summary="CloudWatch Aggregator - Batch Logging Service" \
       description="REST API service that manages batch logging to CloudWatch and Splunk from HTTP POST requests with JSON payloads in a non-blocking manner. Accepts log data via REST API and forwards to configured logging platforms." \
