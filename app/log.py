@@ -1,10 +1,12 @@
 import os
+import threading
 import watchtower
 import logging
 
 from app import app, utils
 
 from boto3.session import Session
+from botocore.config import Config
 from flask import abort, current_app, jsonify, make_response, request
 from splunk_handler import SplunkHandler
 from time import strftime
@@ -29,8 +31,19 @@ LOG_TO_SPLUNK = utils.truthy_string(os.getenv("LOG_TO_SPLUNK"))
 
 logging.basicConfig(level=os.getenv("LOG_LEVEL", logging.INFO))
 
+# Create boto3 client once at module level for reuse across all handlers
+if LOG_TO_CLOUDWATCH:
+    boto_session = Session(
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        region_name=AWS_REGION_NAME,
+    )
+    boto_config = Config(connect_timeout=5, read_timeout=5, retries={"max_attempts": 0})
+    boto_client = boto_session.client("logs", config=boto_config)
+
 
 class Cache:
+    lock = threading.Lock()
     active_stream_handlers = {}
     allowed_streams = os.getenv("CLOUD_WATCH_ALLOWED_STREAMS", "").split(",")
 
@@ -60,12 +73,13 @@ def validate_log_stream(log_stream):
 
 
 def add_log_handlers(log_stream, logger):
-    if not Cache.active_stream_handlers.get(log_stream):
-        Cache.active_stream_handlers[log_stream] = logger
-        if LOG_TO_SPLUNK:
-            add_splunk_handler(logger)
-        if LOG_TO_CLOUDWATCH:
-            add_cw_handler(log_stream, logger)
+    with Cache.lock:
+        if not Cache.active_stream_handlers.get(log_stream):
+            Cache.active_stream_handlers[log_stream] = logger
+            if LOG_TO_SPLUNK:
+                add_splunk_handler(logger)
+            if LOG_TO_CLOUDWATCH:
+                add_cw_handler(log_stream, logger)
 
 
 def add_splunk_handler(logger):
@@ -79,26 +93,22 @@ def add_splunk_handler(logger):
             record_format=utils.truthy_string(os.getenv("SPLUNK_FORMAT_JSON")),
             debug=utils.truthy_string(os.getenv("SPLUNK_DEBUG")),
             sourcetype=os.getenv("SPLUNK_SOURCE_TYPE"),
+            timeout=5,
+            flush_interval=float(os.getenv("SPLUNK_FLUSH_INTERVAL", 10)),
+            queue_size=int(os.getenv("SPLUNK_QUEUE_SIZE", 100)),
         )
     )
 
 
 def add_cw_handler(log_stream, logger):
-    boto_client = session().client("logs")
     logger.addHandler(
         watchtower.CloudWatchLogHandler(
             log_group_name=AWS_LOG_GROUP,
             log_stream_name=log_stream,
             boto3_client=boto_client,
+            send_interval=int(os.getenv("CW_SEND_INTERVAL", 10)),
+            max_batch_count=int(os.getenv("CW_MAX_BATCH_COUNT", 100)),
         )
-    )
-
-
-def session():
-    return Session(
-        aws_access_key_id=AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-        region_name=AWS_REGION_NAME,
     )
 
 
