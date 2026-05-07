@@ -24,10 +24,6 @@ spec:
     value: quay.io/redhat-user-workloads/hcc-accessmanagement-tenant/cloudwatch-aggregator:{{revision}}
   - name: dockerfile
     value: Dockerfile
-  - name: sast-target-dirs
-    type: string
-    default: .
-    description: Target directories to scan with SAST tools. Multiple values should be separated with commas.
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
@@ -82,6 +78,7 @@ spec:
     - default: ""
       description: Image tag expiration time, time values could be something like 1h, 2d, 3w for hours, days, and weeks, respectively.
       name: image-expires-after
+      type: string
     - default: "false"
       description: Build a source image.
       name: build-source-image
