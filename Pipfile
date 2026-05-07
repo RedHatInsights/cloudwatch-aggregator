@@ -11,7 +11,7 @@ gunicorn = "==26.0.0"
 gevent = "*"
 app-common-python = "==0.2.9"
 splunk-handler = "*"
-urllib3 = "==2.6.3"
+urllib3 = "==2.7.0"
 
 [dev-packages]
 pre-commit = "==4.6.0"

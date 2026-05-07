@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1c51187616c8bc5677bba7ffcfa05d5f9f1fabea662465696152d64778ea394f"
+            "sha256": "97d4e6b003541e482e11546455f386949e75adb2aaa54ffe096ecf94dc07c2a2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -34,19 +34,19 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:7c7777862ffc898f05efa566032bbabfe226dbb810e35ec11125817f128bc5c5",
-                "sha256:fb9fe51849ef2a78198d582756fc06f14f7de27f73e0fa90275d6aa4171eb4d0"
+                "sha256:414be7868f25c3b6a0232301c8ab40347911b6b191926b61f00a63f89b97b2bc",
+                "sha256:aa8a296c8db55d812767b282cfe4c7977f0b0eeaa709abdaeb368b9c738e901f"
             ],
             "markers": "python_version >= '3.10'",
-            "version": "==1.43.3"
+            "version": "==1.43.5"
         },
         "botocore": {
             "hashes": [
-                "sha256:eac6da0fffccf87888ebf4d89f0b2378218a707efa748cd955b838995e944695",
-                "sha256:ec0769eb0f7c5034856bb406a92698dbc02a3d4be0f78a384747106b161d8ea3"
+                "sha256:5c7207816ab5e48382adcb2a64db388fa4abe9ee1d23f72c82ae62c51a0bc84e",
+                "sha256:a1df6e0c6346735936f42e6b99f3b28f1e9397731c0bc2563c617df7965a0dc0"
             ],
             "markers": "python_version >= '3.10'",
-            "version": "==1.43.3"
+            "version": "==1.43.5"
         },
         "certifi": {
             "hashes": [
@@ -510,12 +510,12 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed",
-                "sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4"
+                "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c",
+                "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.9'",
-            "version": "==2.6.3"
+            "markers": "python_version >= '3.10'",
+            "version": "==2.7.0"
         },
         "watchtower": {
             "hashes": [
