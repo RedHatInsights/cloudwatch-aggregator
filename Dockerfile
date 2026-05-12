@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.7-1778461551
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.7-1778562320
 
 LABEL name="cloudwatch-aggregator" \
       summary="CloudWatch Aggregator - Batch Logging Service" \
