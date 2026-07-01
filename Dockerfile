@@ -1,4 +1,6 @@
-FROM registry.access.redhat.com/ubi9/ubi-minimal:9.8-1782797275
+FROM registry.access.redhat.com/hi/python:3.12-builder
+
+USER root
 
 LABEL name="cloudwatch-aggregator" \
       summary="CloudWatch Aggregator - Batch Logging Service" \
@@ -16,15 +18,14 @@ LABEL name="cloudwatch-aggregator" \
 
 WORKDIR /usr/src/app
 
-RUN microdnf install --disableplugin=subscription-manager --nodocs -y python3.12 python3.12-pip tar gzip which
-
-# Create symlinks for python3 and pip3 pointing to Python 3.12 binaries
-RUN ln -s /usr/bin/python3.12 /usr/bin/python3 && \
-    ln -s /usr/bin/pip3.12 /usr/bin/pip3
+RUN microdnf install --disableplugin=subscription-manager --nodocs -y tar gzip which && \
+    microdnf clean all
 
 COPY Pipfile* /usr/src/app/
-RUN pip3 install --upgrade pip && pip3 install pipenv
+RUN pip install --upgrade pip && pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
+
+USER 1001
 
 COPY . /usr/src/app/
 CMD ["./run-server.sh"]

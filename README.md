@@ -1,6 +1,10 @@
 # CloudWatch Aggregator
 Manage batch logging to CloudWatch and Splunk from an HTTP POST with JSON in a non-blocking manner
 
+## Container Image
+
+This service uses the Hummingbird Python 3.12 builder image (`registry.access.redhat.com/hi/python:3.12-builder`) as its base.
+
 ### Dependencies
 You'll need to copy `.env.example` to `.env` and populate accordingly depending on which logging platform(s) you're using.
 ```
