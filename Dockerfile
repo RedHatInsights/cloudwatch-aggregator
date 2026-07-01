@@ -22,8 +22,10 @@ RUN microdnf install --disableplugin=subscription-manager --nodocs -y tar gzip w
     microdnf clean all
 
 COPY Pipfile* /usr/src/app/
-RUN pip install --upgrade pip && pip3 install pipenv
+RUN pip install --upgrade pip && pip install pipenv
 RUN pipenv install --system --deploy --ignore-pipfile
+
+USER 1001
 
 COPY . /usr/src/app/
 CMD ["./run-server.sh"]
