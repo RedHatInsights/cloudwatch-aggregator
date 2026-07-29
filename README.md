@@ -3,7 +3,7 @@ Manage batch logging to CloudWatch and Splunk from an HTTP POST with JSON in a n
 
 ## Container Image
 
-This service uses the Hummingbird Python 3.13 builder image (`registry.access.redhat.com/hi/python:3.13-builder`) as its base.
+This service uses the Hummingbird Python 3.14 builder image (`registry.access.redhat.com/hi/python:3.14-builder`) as its base.
 
 ### Dependencies
 You'll need to copy `.env.example` to `.env` and populate accordingly depending on which logging platform(s) you're using.
