@@ -9,7 +9,7 @@ python-dotenv = "==1.2.3"
 watchtower = "==3.4.0"
 gunicorn = "==26.2.0"
 gevent = "*"
-app-common-python = "==0.2.9"
+app-common-python = "==0.3.0"
 splunk-handler = "*"
 urllib3 = "==2.7.0"
 
