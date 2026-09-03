@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/hi/python:3.14-builder
+FROM registry.access.redhat.com/hi/python:3.14.7-builder
 
 USER root
 
