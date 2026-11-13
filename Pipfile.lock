@@ -34,19 +34,19 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:5fda4a3dd2782c134a01d1678911962c2860dd8de8cd10bef168ba1507b371a9",
-                "sha256:dd701a973b02a73930e546a6a15d13edbfbedc3180bb3d55b0a88678c284ccd6"
+                "sha256:70c02826640da17c15067033af01667059dde5e86057c2d1227cd8523c2f24dd",
+                "sha256:d62ff8a9eb06cab9f0b4242d7a2907a8fff9cca630e27ef736660f9d53e5b18e"
             ],
             "markers": "python_version >= '3.10'",
-            "version": "==1.43.126"
+            "version": "==1.44.2"
         },
         "botocore": {
             "hashes": [
-                "sha256:2f2239a47025a2fa173cd145ab8803ac02b76114864bf5b66475ff1cb88e6b0a",
-                "sha256:96996af07d8b703c3cdf44863f69c0b4b8b2d1cb6976c641986ced3e38c072f3"
+                "sha256:39da314d7bab66e9da9af5531445d237beaeeab1fce0ed034bb6315d480b85ce",
+                "sha256:f255849e8adc413812162e100cf53c4d096d07d9fd6f1773d90fa6034f7d8980"
             ],
             "markers": "python_version >= '3.10'",
-            "version": "==1.43.126"
+            "version": "==1.44.2"
         },
         "certifi": {
             "hashes": [
@@ -747,11 +747,11 @@
         },
         "filelock": {
             "hashes": [
-                "sha256:96530b7c538d4ea08493ab067247aab7948c54d8cd622cce711c97cccc5d9896",
-                "sha256:a379c50a729e5b68c8519a4d26489f755d9769960a236ecd838190e2a78db2e9"
+                "sha256:9479aaeb4db20b5a53e3da28493edd24720b66b8a0b84030aa56ccdf243d6857",
+                "sha256:fcc3c0cb8bfe7f4b3bb0e231c04b15dbad068cb3c2515f343d8fde4dce93bd5d"
             ],
             "markers": "python_version >= '3.11'",
-            "version": "==4.2.9"
+            "version": "==4.2.10"
         },
         "identify": {
             "hashes": [
